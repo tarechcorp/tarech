@@ -25,8 +25,8 @@ function SceneOrchestrator({ setValues }: { setValues: (v: any) => void }) {
       scrollTrigger: {
         trigger: "#main-scroll-container",
         start: "top top",
-        end: "+=2000",
-        scrub: 1.5,
+        end: "+=5000",
+        scrub: 2.5,
         pin: true,
         onUpdate: (self) => {
           setValues({ progress: self.progress });
