@@ -1,0 +1,93 @@
+{
+    "active_design_system": {
+        "metadata": {
+            "name": "Research Corp - Industrial Elegance",
+            "version": "2.0.0",
+            "description": "A premium, editorial design system focused on performance, confident typography, and glassmorphism."
+        },
+        "typography": {
+            "display": {
+                "family": "Syne",
+                "variable": "--font-syne",
+                "weights": [
+                    400,
+                    500,
+                    600,
+                    700,
+                    800
+                ],
+                "usage": "Headlines, Hero Text, Brand Logo"
+            },
+            "body": {
+                "family": "Geist Sans",
+                "variable": "--font-geist-sans",
+                "usage": "Long form text, UI elements, descriptions"
+            },
+            "mono": {
+                "family": "Geist Mono",
+                "variable": "--font-geist-mono",
+                "usage": "Metadata, timestamps, technical specs"
+            }
+        },
+        "colors": {
+            "theme": {
+                "background": "var(--background)",
+                "foreground": "var(--foreground)"
+            },
+            "palette": {
+                "obsidian": {
+                    "value": "#050505",
+                    "variable": "--color-obsidian",
+                    "usage": "Deep backgrounds, void areas"
+                },
+                "savannah": {
+                    "value": "#E0A64E",
+                    "variable": "--color-savannah",
+                    "usage": "Primary accent, highlights, active states"
+                },
+                "electric_teal": {
+                    "value": "#2DD4BF",
+                    "variable": "--color-electric-teal",
+                    "usage": "Secondary accent, data points"
+                }
+            },
+            "gradients": {
+                "text_reveal": "bg-gradient-to-b from-white to-white/60",
+                "glass_border": "border-white/10"
+            }
+        },
+        "effects": {
+            "glass": {
+                "default": "bg-black/20 backdrop-blur-md border border-white/10",
+                "usage": "Panels, Sidebars, Hero Banners"
+            },
+            "grain": {
+                "description": "CSS/SVG based noise overlay used globally using GrainientBackground component",
+                "settings": {
+                    "noiseScale": 2,
+                    "grainAmount": 0.1
+                }
+            },
+            "shutter": {
+                "description": "Full screen black curtain wipe for page transitions",
+                "duration": "0.8s",
+                "ease": "[0.22, 1, 0.36, 1]"
+            }
+        },
+        "animations": {
+            "library": "GSAP + Framer Motion + Tailwind",
+            "easings": {
+                "editorial": "expo.out",
+                "smooth": "power3.out",
+                "cinematic": "power4.out"
+            },
+            "custom_keyframes": {
+                "fadeUp": "opacity 0 -> 1, translateY 20px -> 0"
+            }
+        },
+        "layout": {
+            "container": "w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+            "grid": "grid-cols-1 md:grid-cols-12 gap-6"
+        }
+    }
+}
