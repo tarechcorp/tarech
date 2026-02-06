@@ -1,159 +1,117 @@
 "use client";
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Canvas, useThree, useFrame } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { AsciiEarth } from "@/components/3d/ascii-earth";
 import { DataGraph } from "@/components/3d/data-graph";
 import { GlassSidebar } from "@/components/ui/glass-sidebar";
+import { FloatingGallery } from "@/components/FloatingGallery"; // Screen 2
 import { cn } from "@/lib/utils";
 import * as THREE from "three";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Scene orchestrator to handle camera movement and object visibility
-function SceneOrchestrator({ setValues }: { setValues: (v: any) => void }) {
+// Component to handle Earth transition logic inside Canvas
+function EarthScene({ setProgress }: { setProgress: (v: number) => void }) {
   const earthRef = useRef<THREE.Group>(null);
-  const dataGraphRef = useRef<THREE.Group>(null);
   const { camera } = useThree();
-  const [dataVisible, setDataVisible] = useState(false);
 
   useGSAP(() => {
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: "#main-scroll-container",
+        trigger: "#hero-scroll-trigger",
         start: "top top",
-        end: "+=5000",
-        scrub: 2.5,
-        pin: true,
+        end: "+=3000",
+        scrub: 1.5,
         onUpdate: (self) => {
-          setValues({ progress: self.progress });
-          // Toggle visibility based on progress threshold
-          if (self.progress > 0.4 && !dataVisible) setDataVisible(true);
-          if (self.progress < 0.4 && dataVisible) setDataVisible(false);
+          setProgress(self.progress);
         },
       },
     });
 
-    // 1. Zoom into Africa (Camera Z movement)
-    tl.to(camera.position, {
-      z: 3.5,
-      ease: "power2.inOut",
-      duration: 5,
-    });
+    // Zoom and Dissolve Earth
+    tl.to(camera.position, { z: 4, duration: 2, ease: "power2.inOut" }, 0);
 
-    // 2. Earth Dissolve (Scale up & Opacity down)
     if (earthRef.current) {
-      tl.to(earthRef.current.scale, {
-        x: 5, y: 5, z: 5,
-        duration: 5,
-        ease: "power2.inOut"
-      }, 0);
-
-      tl.to(earthRef.current.position, {
-        x: -1,
-        duration: 5
-      }, 0);
-
-      // Fade out Earth
-      if (earthRef.current.children[0]) {
-        const earthMesh = earthRef.current.children[0] as THREE.Mesh;
-        // Note: We need to access the material safely. 
-        // For now, let's assume standard material opacity animation separate or rely on Scale/Z-index
-      }
+      tl.to(earthRef.current.scale, { x: 4, y: 4, z: 4, duration: 2 }, 0);
+      tl.to(earthRef.current.position, { x: -2, duration: 2 }, 0);
+      tl.to(earthRef.current.rotation, { y: Math.PI, duration: 2 }, 0);
     }
-
-    // 3. Data Graph Reveal is now mostly handled by the React "visible" prop mount/unmount
-    // but we can still animate the scale in if it is present.
-    // Note: ScrollTrigger runs logic effectively, but React state updates inside onUpdate
-    // might cause re-renders. This is acceptable for this transition speed.
 
   }, { scope: "#canvas-wrapper" });
 
   return (
-    <>
-      <group ref={earthRef} visible={!dataVisible}>
-        <AsciiEarth />
-      </group>
-      <group ref={dataGraphRef}>
-        {dataVisible && <DataGraph />}
-      </group>
-    </>
+    <group ref={earthRef}>
+      <AsciiEarth />
+    </group>
   );
 }
 
-
 export default function Home() {
   const container = useRef<HTMLDivElement>(null);
-  const [scrollState, setScrollState] = useState({ progress: 0 });
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  // UI Visibility Logic
-  const showSidebar = scrollState.progress > 0.6;
-  const showHeroText = scrollState.progress < 0.2;
+  // Transition Logic
+  // 0.0 - 0.5: Earth Hero
+  // 0.5 - 1.0: Transition to Space Gallery
+  const showHero = scrollProgress < 0.9;
+  const showGallery = scrollProgress > 0.4; // Overlap slightly for smoothness?
 
-  useGSAP(() => {
-    // Intro Text Animation
-    const tl = gsap.timeline();
-    tl.from(".char", {
-      y: 100,
-      opacity: 0,
-      rotateZ: 5,
-      stagger: 0.05,
-      duration: 1,
-      ease: "power4.out",
-    });
-  }, { scope: container });
+  // Opacity for fade transition
+  const heroOpacity = Math.max(0, 1 - (scrollProgress - 0.4) * 3);
+  const galleryOpacity = Math.min(1, (scrollProgress - 0.4) * 2);
 
   return (
-    <main
-      ref={container}
-      id="main-scroll-container"
-      className={cn(
-        "h-[300vh] relative",
-        "bg-obsidian text-neutral-100" // Deep Obsidian Background
-      )}
-    >
-      {/* Fixed Canvas Layer */}
-      <div id="canvas-wrapper" className="fixed inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-          <ambientLight intensity={0.5} />
-          <SceneOrchestrator setValues={setScrollState} />
-        </Canvas>
-      </div>
+    <main ref={container} className="relative bg-[#050505] min-h-[400vh]">
 
-      {/* Fixed UI Layer: Hero Text */}
+      {/* SCROLL TRIGGER SPACER */}
+      <div id="hero-scroll-trigger" className="absolute top-0 left-0 w-full h-[300vh] pointer-events-none" />
+
+      {/* STAGE 1: EARTH HERO */}
       <div
-        className={cn(
-          "fixed inset-0 z-10 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-1000",
-          showHeroText ? "opacity-100" : "opacity-0"
-        )}
+        id="canvas-wrapper"
+        className="fixed inset-0 z-10 transition-opacity duration-500"
+        style={{ opacity: heroOpacity, pointerEvents: showHero ? "auto" : "none" }}
       >
-        <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-center mix-blend-difference">
-          <span className="block overflow-hidden">
-            {"Translating".split("").map((char, i) => (
-              <span key={i} className="char inline-block">{char}</span>
-            ))}
-          </span>
-          <span className="block overflow-hidden text-savannah">
-            {"Innovation".split("").map((char, i) => (
-              <span key={i} className="char inline-block">{char}</span>
-            ))}
-          </span>
-        </h1>
-        <p className="mt-6 text-xl text-neutral-400 font-mono tracking-widest uppercase">
-          Deep-tech research • Localized
-        </p>
+        {showHero && (
+          <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
+            <ambientLight intensity={0.5} />
+            <EarthScene setProgress={setScrollProgress} />
+          </Canvas>
+        )}
       </div>
 
-      {/* Fixed UI Layer: Sidebar */}
-      <GlassSidebar visible={showSidebar} />
+      {/* HERO TEXT */}
+      <div
+        className="fixed inset-0 z-20 flex items-center justify-center pointer-events-none transition-opacity duration-500"
+        style={{ opacity: Math.max(0, 1 - scrollProgress * 3) }}
+      >
+        <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-center mix-blend-difference text-white">
+          Translating <span className="text-savannah">Innovation</span>
+        </h1>
+      </div>
 
-      {/* Scroll Spacers (Invisible) */}
-      <div className="absolute top-0 w-full h-[100vh]" />
-      <div className="absolute top-[100vh] w-full h-[100vh]" />
-      <div className="absolute top-[200vh] w-full h-[100vh]" />
+      {/* STAGE 2: FLOATING SPACE GALLERY */}
+      <div
+        className="fixed inset-0 z-30 transition-opacity duration-1000"
+        style={{
+          opacity: galleryOpacity,
+          pointerEvents: showGallery ? "auto" : "none",
+          visibility: showGallery ? "visible" : "hidden"
+        }}
+      >
+        {/* FloatingGallery has its own interactive layer */}
+        <FloatingGallery />
+      </div>
+
+      {/* UI SIDEBAR (Shared or Specific?) */}
+      {/* FloatingGallery has its own Sidebar, so we might not need the global one here.
+          The previous global one was for "Sector Analysis". 
+          If Phase 4 instructions said "Update GlassSidebar", FloatingGallery uses it.
+      */}
 
     </main>
   );

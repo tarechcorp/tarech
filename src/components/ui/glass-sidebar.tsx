@@ -5,9 +5,19 @@ import { cn } from "@/lib/utils";
 
 interface GlassSidebarProps {
     visible: boolean;
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    onClose?: () => void;
 }
 
-export function GlassSidebar({ visible }: GlassSidebarProps) {
+export function GlassSidebar({
+    visible,
+    title = "Fintech",
+    subtitle = "Sector Analysis",
+    description = "Mobile money penetration in Sub-Saharan Africa has reached 72%. Our cluster analysis reveals emerging opportunities in localized micro-lending.",
+    onClose
+}: GlassSidebarProps) {
     return (
         <motion.div
             initial={{ x: 100, opacity: 0 }}
@@ -15,20 +25,29 @@ export function GlassSidebar({ visible }: GlassSidebarProps) {
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
             className={cn(
                 "fixed right-0 top-0 h-full w-80 z-20",
-                "bg-white/5 backdrop-blur-2xl border-l border-white/10",
-                "p-8 flex flex-col justify-center space-y-6 text-neutral-200"
+                "bg-black/60 backdrop-blur-2xl border-l border-white/10",
+                "p-8 flex flex-col justify-center space-y-6 text-neutral-300"
             )}
         >
+            {onClose && (
+                <button
+                    onClick={onClose}
+                    className="absolute top-6 right-6 p-2 text-white bg-white/10 hover:bg-white/20 rounded-full transition-colors z-50 backdrop-blur-md"
+                    aria-label="Close Sidebar"
+                >
+                    ✕
+                </button>
+            )}
+
             <div className="space-y-2">
                 <h3 className="text-sm font-mono text-electric-teal uppercase tracking-widest">
-                    Sector Analysis
+                    {subtitle}
                 </h3>
-                <h2 className="text-3xl font-bold text-white">Fintech</h2>
+                <h2 className="text-3xl font-bold text-white">{title}</h2>
             </div>
 
             <p className="text-sm font-light leading-relaxed text-neutral-400">
-                Mobile money penetration in Sub-Saharan Africa has reached 72%.
-                Our cluster analysis reveals emerging opportunities in localized micro-lending.
+                {description}
             </p>
 
             <div className="space-y-4 pt-8">

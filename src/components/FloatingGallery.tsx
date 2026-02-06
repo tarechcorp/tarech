@@ -1,0 +1,108 @@
+"use client";
+
+import { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/navigation";
+import * as THREE from "three";
+import { GraphScene, ClusterId, generateGraphData } from "@samoramachel/netuniverse";
+import { GalleryItem } from "./GalleryItem";
+import { GlassSidebar } from "@/components/ui/glass-sidebar";
+
+interface GalleryImage {
+    id: string;
+    url: string;
+    position: [number, number, number];
+    title: string;
+    description?: string;
+}
+
+// Mock Data Generator for Gallery Items (Positions)
+const generateGalleryData = (count = 20): GalleryImage[] => {
+    return Array.from({ length: count }).map((_, i) => {
+        const phi = Math.acos(-1 + (2 * i) / count);
+        const theta = Math.sqrt(count * Math.PI) * phi;
+        const radius = 200 + (i % 5) * 20;
+
+        const x = radius * Math.sin(phi) * Math.cos(theta);
+        const y = radius * Math.sin(phi) * Math.sin(theta);
+        const z = radius * Math.cos(phi);
+
+        return {
+            id: `img-${i}`,
+            url: `https://picsum.photos/seed/${i}/800/600`, // Placeholder
+            position: [x, y, z],
+            title: `Project Node ${i + 1}`,
+            description: `Analyzing deep-space signals from sector ${i + 1}. Pattern recognition alpha: ${Math.random().toFixed(2)}.`
+        };
+    });
+};
+
+export function FloatingGallery() {
+    const router = useRouter();
+    const graphRef = useRef<any>(null);
+    const [images] = useState(() => generateGalleryData(20));
+
+    // Use library's generator
+    const [graphData] = useState(() => {
+        const data = generateGraphData(100);
+        // Force Cast valid ClusterId if needed or ensure data aligns
+        return data;
+    });
+
+    const [selectedItem, setSelectedItem] = useState<GalleryImage | null>(null);
+
+    const handleImageClick = (img: GalleryImage) => {
+        if (!graphRef.current) return;
+        setSelectedItem(img);
+
+        // Fly camera to image
+        const imgVec = new THREE.Vector3(...img.position);
+        const targetVec = imgVec.clone().normalize().multiplyScalar(imgVec.length() - 80);
+        if (graphRef.current.flyTo) {
+            graphRef.current.flyTo([targetVec.x, targetVec.y, targetVec.z], 2);
+            graphRef.current.lookAt(img.position, 2);
+        }
+    };
+
+    const handleCloseSidebar = () => setSelectedItem(null);
+
+    const handleExit = () => {
+        console.log("Exiting Universe -> Grade 3");
+        router.push("/page-3");
+    };
+
+    return (
+        <div className="fixed top-0 left-0 w-full h-full bg-[#050505] -z-10">
+            {/* 3D Scene */}
+            <GraphScene ref={graphRef} data={graphData} style={{ background: "transparent" }}>
+                {/* Note: StarField is not exported yet. Using dark background. */}
+
+                {images.map((img) => (
+                    <GalleryItem
+                        key={img.id}
+                        url={img.url}
+                        position={img.position}
+                        onClick={() => handleImageClick(img)}
+                    />
+                ))}
+            </GraphScene>
+
+            {/* Sidebar */}
+            <GlassSidebar
+                visible={!!selectedItem}
+                title={selectedItem?.title}
+                description={selectedItem?.description}
+                onClose={handleCloseSidebar}
+            />
+
+            {/* EXIT BUTTON */}
+            <div className="fixed bottom-8 right-8 z-50">
+                <button
+                    onClick={handleExit}
+                    className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-mono hover:bg-white/20 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                >
+                    PROCEED TO NEXT PHASE →
+                </button>
+            </div>
+        </div>
+    );
+}
