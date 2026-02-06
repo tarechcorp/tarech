@@ -9,6 +9,7 @@ interface GlassSidebarProps {
     sector?: string; // New Sector Prop
     description?: string;
     onClose?: () => void;
+    onExit?: () => void;
 }
 
 export function GlassSidebar({
@@ -17,7 +18,8 @@ export function GlassSidebar({
     subtitle = "Sector Analysis",
     sector = "Finance",
     description = "Mobile money penetration in Sub-Saharan Africa has reached 72%. Our cluster analysis reveals emerging opportunities in localized micro-lending.",
-    onClose
+    onClose,
+    onExit
 }: GlassSidebarProps) {
     const sidebarRef = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -80,7 +82,7 @@ export function GlassSidebar({
                         {/* HEADER */}
                         <div className="space-y-4">
                             <div className="flex items-center gap-3">
-                                <span className="px-2 py-1 text-[10px] uppercase font-mono tracking-widest text-[#CBACF9] bg-[#CBACF9]/10 rounded border border-[#CBACF9]/20">
+                                <span className="px-2 py-1 text-[10px] uppercase font-mono tracking-widest text-[#F9D8AC] bg-[#F9E9AC]/10 rounded border border-[#F9E4AC]/20">
                                     {sector}
                                 </span>
                                 <div className="h-px bg-white/10 flex-grow" />
@@ -104,14 +106,14 @@ export function GlassSidebar({
                         {/* DATA VISUALIZATION MOCK */}
                         <div className="space-y-6 mt-4">
                             <h4 className="text-xs font-mono text-neutral-600 uppercase tracking-widest">
-                                Market Signals
+                                Project Analytics
                             </h4>
                             <div className="grid grid-cols-2 gap-3">
                                 {[
-                                    { label: "Growth", value: "+24%" },
-                                    { label: "Volume", value: "8.2M" },
-                                    { label: "Risk", value: "Low" },
-                                    { label: "Sentiment", value: "POS" }
+                                    { label: "Sentiment", value: "+24%" },
+                                    { label: "User Impacted", value: "8.2M" },
+                                    { label: "Impact", value: "High" },
+                                    { label: "Status", value: "Completed" }
                                 ].map((stat, i) => (
                                     <div key={i} className="bg-white/5 border border-white/5 p-3 rounded hover:bg-white/10 transition-colors">
                                         <div className="text-[10px] uppercase text-neutral-500 font-mono mb-1">{stat.label}</div>
@@ -124,11 +126,14 @@ export function GlassSidebar({
                         <div className="flex-grow" />
 
                         {/* FOOTER */}
-                        {/* <div className="pt-6 border-t border-white/5">
-                            <button className="w-full py-4 bg-white text-black font-mono text-xs uppercase tracking-widest hover:bg-neutral-200 transition-colors">
-                                Access Full Report
+                        <div className="pt-6 border-t border-white/5">
+                            <button
+                                onClick={onExit}
+                                className="w-full py-4 bg-white text-black font-mono text-xs uppercase tracking-widest hover:bg-neutral-200 transition-colors"
+                            >
+                                Exit Universe
                             </button>
-                        </div> */}
+                        </div>
                     </div>
                 </motion.div>
             )}

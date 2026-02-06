@@ -38,8 +38,15 @@ const generateGalleryData = (count = 20): GalleryImage[] => {
     });
 };
 
-export function FloatingGallery() {
-    const router = useRouter();
+import { usePageTransition } from "@/components/providers/transition-provider";
+
+interface FloatingGalleryProps {
+    onSidebarOpenChange?: (isOpen: boolean) => void;
+}
+
+export function FloatingGallery({ onSidebarOpenChange }: FloatingGalleryProps) {
+    // const router = useRouter(); // Removed in favor of transition
+    const { transitionTo } = usePageTransition();
     const graphRef = useRef<any>(null);
     const [images] = useState(() => generateGalleryData(20));
 
@@ -51,6 +58,11 @@ export function FloatingGallery() {
     });
 
     const [selectedItem, setSelectedItem] = useState<GalleryImage | null>(null);
+
+    // Sync sidebar state with parent
+    useEffect(() => {
+        onSidebarOpenChange?.(!!selectedItem);
+    }, [selectedItem, onSidebarOpenChange]);
 
     const handleImageClick = (img: GalleryImage) => {
         if (!graphRef.current) return;
@@ -69,7 +81,7 @@ export function FloatingGallery() {
 
     const handleExit = () => {
         console.log("Exiting Universe -> Grade 3");
-        router.push("/page-3");
+        transitionTo("/about");
     };
 
     const customConfig = {
@@ -103,17 +115,18 @@ export function FloatingGallery() {
                 sector={selectedItem?.sector}
                 description={selectedItem?.description}
                 onClose={handleCloseSidebar}
+                onExit={handleExit}
             />
 
             {/* EXIT BUTTON */}
-            <div className="fixed bottom-8 right-8 z-50">
+            {/* <div className="fixed bottom-8 right-8 z-50">
                 <button
                     onClick={handleExit}
                     className="px-6 py-3 bg-black/80 backdrop-blur-md border border-white/10 rounded-full text-neutral-300 font-mono text-xs hover:bg-black hover:text-white transition-all shadow-[0_0_20px_rgba(0,0,0,0.5)] z-50 pointer-events-auto"
                 >
                     EXIT →
                 </button>
-            </div>
+            </div> */}
         </div>
     );
 }
