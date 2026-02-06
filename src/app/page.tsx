@@ -8,7 +8,6 @@ import { Canvas, useThree } from "@react-three/fiber";
 import { AsciiEarth } from "@/components/3d/ascii-earth";
 import { DataGraph } from "@/components/3d/data-graph";
 import { GlassSidebar } from "@/components/ui/glass-sidebar";
-import { SplitTextReveal } from "@/components/ui/split-text-reveal";
 import { FloatingGallery } from "@/components/FloatingGallery"; // Screen 2
 import { cn } from "@/lib/utils";
 import * as THREE from "three";
@@ -53,26 +52,77 @@ function EarthScene({ setProgress }: { setProgress: (v: number) => void }) {
 
 import { LoadingScreen } from "@/components/ui/loading-screen";
 import { NoiseOverlay } from "@/components/ui/noise-overlay";
+import { SplitTextReveal } from "@/components/ui/split-text-reveal";
+import { GrainientBackground } from "@/components/ui/grainient-background";
+
+import { useLenis } from "lenis/react";
 
 export default function Home() {
   const container = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const lenis = useLenis();
+
+  // SCROLL TRAP LOGIC
+  useEffect(() => {
+    // If user has scrolled deep into the gallery (progress > 0.9), lock them there.
+    if (scrollProgress > 0.9) {
+      // Lock Smooth Scroll
+      if (lenis) {
+        lenis.stop();
+        lenis.scrollTo("bottom", { immediate: true, force: true });
+      }
+      // Lock Native Scroll (Fallback)
+      document.body.style.overflow = "hidden";
+    } else {
+      // Unlock
+      if (lenis) lenis.start();
+      document.body.style.overflow = "";
+    }
+  }, [scrollProgress, lenis]);
 
   // Transition Logic
   // 0.0 - 0.5: Earth Hero
   // 0.5 - 1.0: Transition to Space Gallery
-  const showHero = scrollProgress < 0.9;
-  const showGallery = scrollProgress > 0.4; // Overlap slightly for smoothness?
 
-  // Opacity for fade transition
-  const heroOpacity = Math.max(0, 1 - (scrollProgress - 0.4) * 3);
+  // FIXED REFRESH BUG:
+  // Instead of unmounting the Canvas with `showHero && (...)`, we keep it mounted
+  // but change visibility/events. This prevents race conditions on hydration.
+  const showHero = scrollProgress < 0.6;
+  const showGallery = scrollProgress > 0.4;
+
+  const heroOpacity = isLoaded ? Math.max(0, 1 - (scrollProgress - 0.4) * 3) : 0;
   const galleryOpacity = Math.min(1, (scrollProgress - 0.4) * 2);
 
   return (
-    <main ref={container} className="relative bg-[#050505] min-h-[400vh]">
+    <main ref={container} className="relative min-h-[400vh]">
 
+      <GrainientBackground
+        color1="#000000"
+        color2="#69562D"
+        color3="#374774"
+        timeSpeed={2.45}
+        colorBalance={0.27}
+        warpStrength={1.55}
+        warpFrequency={8.1}
+        warpSpeed={2}
+        warpAmplitude={50}
+        blendAngle={0}
+        blendSoftness={0.05}
+        rotationAmount={500}
+        noiseScale={2}
+        grainAmount={0.1}
+        grainScale={2}
+        grainAnimated={false}
+        contrast={1.5}
+        gamma={1}
+        saturation={1}
+        centerX={0}
+        centerY={0}
+        zoom={0.9}
+      />
       <NoiseOverlay />
-      <LoadingScreen />
+      <LoadingScreen onComplete={() => setIsLoaded(true)} />
 
       {/* SCROLL TRIGGER SPACER */}
       <div id="hero-scroll-trigger" className="absolute top-0 left-0 w-full h-[300vh] pointer-events-none" />
@@ -83,15 +133,12 @@ export default function Home() {
         className="fixed inset-0 z-10 transition-opacity duration-500"
         style={{ opacity: heroOpacity, pointerEvents: showHero ? "auto" : "none" }}
       >
-        {showHero && (
-          <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
-            <ambientLight intensity={0.5} />
-            <EarthScene setProgress={setScrollProgress} />
-          </Canvas>
-        )}
+        {/* Render Canvas Always, use CSS to hide if needed, but for hero it's fine */}
+        <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
+          <ambientLight intensity={0.5} />
+          <EarthScene setProgress={setScrollProgress} />
+        </Canvas>
       </div>
-
-
 
       {/* HERO TEXT */}
       <div
@@ -135,12 +182,6 @@ export default function Home() {
         {/* FloatingGallery has its own interactive layer */}
         <FloatingGallery />
       </div>
-
-      {/* UI SIDEBAR (Shared or Specific?) */}
-      {/* FloatingGallery has its own Sidebar, so we might not need the global one here.
-          The previous global one was for "Sector Analysis". 
-          If Phase 4 instructions said "Update GlassSidebar", FloatingGallery uses it.
-      */}
 
     </main>
   );

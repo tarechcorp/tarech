@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
-export function LoadingScreen() {
+export function LoadingScreen({ onComplete }: { onComplete?: () => void }) {
     const { active, progress } = useProgress();
     const [finished, setFinished] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -19,7 +19,10 @@ export function LoadingScreen() {
                 // Animate out
                 if (containerRef.current) {
                     const tl = gsap.timeline({
-                        onComplete: () => setFinished(true)
+                        onComplete: () => {
+                            setFinished(true);
+                            onComplete?.();
+                        }
                     });
 
                     // Text flies up

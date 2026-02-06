@@ -71,7 +71,7 @@ export function FloatingGallery() {
     };
 
     return (
-        <div className="fixed top-0 left-0 w-full h-full bg-[#050505] -z-10">
+        <div className="fixed top-0 left-0 w-full h-full -z-10">
             {/* 3D Scene */}
             <GraphScene ref={graphRef} data={graphData} style={{ background: "transparent" }}>
                 {/* Note: StarField is not exported yet. Using dark background. */}
