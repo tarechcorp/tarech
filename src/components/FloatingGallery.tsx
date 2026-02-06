@@ -119,14 +119,7 @@ export function FloatingGallery({ onSidebarOpenChange }: FloatingGalleryProps) {
             />
 
             {/* EXIT BUTTON */}
-            {/* <div className="fixed bottom-8 right-8 z-50">
-                <button
-                    onClick={handleExit}
-                    className="px-6 py-3 bg-black/80 backdrop-blur-md border border-white/10 rounded-full text-neutral-300 font-mono text-xs hover:bg-black hover:text-white transition-all shadow-[0_0_20px_rgba(0,0,0,0.5)] z-50 pointer-events-auto"
-                >
-                    EXIT →
-                </button>
-            </div> */}
+            
         </div>
     );
 }
