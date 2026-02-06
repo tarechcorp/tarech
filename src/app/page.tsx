@@ -8,6 +8,7 @@ import { Canvas, useThree } from "@react-three/fiber";
 import { AsciiEarth } from "@/components/3d/ascii-earth";
 import { DataGraph } from "@/components/3d/data-graph";
 import { GlassSidebar } from "@/components/ui/glass-sidebar";
+import { SplitTextReveal } from "@/components/ui/split-text-reveal";
 import { FloatingGallery } from "@/components/FloatingGallery"; // Screen 2
 import { cn } from "@/lib/utils";
 import * as THREE from "three";
@@ -50,6 +51,9 @@ function EarthScene({ setProgress }: { setProgress: (v: number) => void }) {
   );
 }
 
+import { LoadingScreen } from "@/components/ui/loading-screen";
+import { NoiseOverlay } from "@/components/ui/noise-overlay";
+
 export default function Home() {
   const container = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -66,6 +70,9 @@ export default function Home() {
 
   return (
     <main ref={container} className="relative bg-[#050505] min-h-[400vh]">
+
+      <NoiseOverlay />
+      <LoadingScreen />
 
       {/* SCROLL TRIGGER SPACER */}
       <div id="hero-scroll-trigger" className="absolute top-0 left-0 w-full h-[300vh] pointer-events-none" />
@@ -84,14 +91,36 @@ export default function Home() {
         )}
       </div>
 
+
+
       {/* HERO TEXT */}
       <div
-        className="fixed inset-0 z-20 flex items-center justify-center pointer-events-none transition-opacity duration-500"
+        className="fixed inset-0 z-20 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-500"
         style={{ opacity: Math.max(0, 1 - scrollProgress * 3) }}
       >
-        <h1 className="text-6xl md:text-8xl font-bold tracking-tighter text-center mix-blend-difference text-white">
-          Translating <span className="text-savannah">Innovation</span>
-        </h1>
+        <div className="flex flex-col items-center gap-6 mix-blend-difference text-center max-w-5xl px-4">
+          <div className="flex flex-col gap-0 items-center">
+            <SplitTextReveal
+              text="From Lab to Life."
+              className="text-5xl md:text-7xl font-bold tracking-tighter text-white leading-[0.9]"
+              delay={2.5}
+              wordLevel={true}
+            />
+            <SplitTextReveal
+              text="From Global to Grounded."
+              className="text-5xl md:text-7xl font-bold tracking-tighter text-savannah leading-[0.9]"
+              delay={3.2}
+              wordLevel={true}
+            />
+          </div>
+
+          <div className="overflow-hidden mt-4">
+            <p className="text-lg md:text-xl font-light text-neutral-300 max-w-2xl animate-fade-up opacity-0"
+              style={{ animation: "fadeUp 1s ease-out 4.5s forwards" }}>
+              Bridging the world’s most advanced R&D with the heartbeat of the African market.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* STAGE 2: FLOATING SPACE GALLERY */}
