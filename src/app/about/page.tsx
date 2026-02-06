@@ -51,7 +51,7 @@ export default function AboutPage() {
                     </div>
 
                     <div className="mt-12">
-                        <button className="px-8 py-4 bg-black text-white rounded-full font-sans text-xs font-bold uppercase tracking-widest hover:bg-orange-600 transition-colors">
+                        <button className="px-8 py-4 bg-black text-white rounded-full font-sans text-xs font-bold uppercase tracking-widest hover:bg-orange-500 transition-colors">
                             Explore Our Projects
                         </button>
                     </div>
