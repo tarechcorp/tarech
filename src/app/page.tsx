@@ -57,6 +57,8 @@ import { GrainientBackground } from "@/components/ui/grainient-background";
 
 import { useLenis } from "lenis/react";
 
+import { MinimalNav } from "@/components/ui/minimal-nav";
+
 export default function Home() {
   const container = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -96,6 +98,8 @@ export default function Home() {
 
   return (
     <main ref={container} className="relative min-h-[400vh]">
+      <MinimalNav />
+
 
       <GrainientBackground
         color1="#000000"
