@@ -12,6 +12,7 @@ interface GalleryImage {
     url: string;
     position: [number, number, number];
     title: string;
+    sector: string;
     description?: string;
 }
 
@@ -31,6 +32,7 @@ const generateGalleryData = (count = 20): GalleryImage[] => {
             url: `https://picsum.photos/seed/${i}/800/600`, // Placeholder
             position: [x, y, z],
             title: `Project Node ${i + 1}`,
+            sector: ["Fintech", "AgriTech", "Health", "Logistics"][i % 4],
             description: `Analyzing deep-space signals from sector ${i + 1}. Pattern recognition alpha: ${Math.random().toFixed(2)}.`
         };
     });
@@ -90,6 +92,7 @@ export function FloatingGallery() {
             <GlassSidebar
                 visible={!!selectedItem}
                 title={selectedItem?.title}
+                sector={selectedItem?.sector}
                 description={selectedItem?.description}
                 onClose={handleCloseSidebar}
             />
@@ -98,9 +101,9 @@ export function FloatingGallery() {
             <div className="fixed bottom-8 right-8 z-50">
                 <button
                     onClick={handleExit}
-                    className="px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-mono hover:bg-white/20 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                    className="px-6 py-3 bg-black/80 backdrop-blur-md border border-white/10 rounded-full text-neutral-300 font-mono text-xs hover:bg-black hover:text-white transition-all shadow-[0_0_20px_rgba(0,0,0,0.5)] z-50 pointer-events-auto"
                 >
-                    PROCEED TO NEXT PHASE →
+                    EXIT →
                 </button>
             </div>
         </div>
