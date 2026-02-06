@@ -99,8 +99,8 @@ export default function Home() {
 
       <GrainientBackground
         color1="#000000"
-        color2="#69562D"
-        color3="#374774"
+        color2="#000000"
+        color3="#000000"
         timeSpeed={2.45}
         colorBalance={0.27}
         warpStrength={1.55}
