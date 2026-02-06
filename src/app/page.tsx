@@ -73,9 +73,9 @@ export default function Home() {
       <MinimalNav visible={!isSidebarOpen} />
 
       <GrainientBackground
-        color1="#3F3934"
-        color2="#000542"
-        color3="#E59952"
+        color1="#3D3931"
+        color2="#01052E"
+        color3="#E69345"
         timeSpeed={2.45}
         colorBalance={0.27}
         warpStrength={1.55}
@@ -104,7 +104,7 @@ export default function Home() {
 
       {/* STAGE 1: TEXT HERO */}
       {showHero && (
-        <TextHero opacity={heroOpacity} />
+        <TextHero opacity={heroOpacity} isLoaded={isLoaded} />
       )}
 
       {/* STAGE 2: FLOATING SPACE GALLERY */}
