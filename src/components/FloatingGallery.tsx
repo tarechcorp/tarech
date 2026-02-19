@@ -95,7 +95,7 @@ export function FloatingGallery({ onSidebarOpenChange }: FloatingGalleryProps) {
     return (
         <div className="fixed top-0 left-0 w-full h-full -z-10">
             {/* 3D Scene */}
-            <GraphScene ref={graphRef} data={graphData} config={customConfig} style={{ background: "transparent" }}>
+            <GraphScene ref={graphRef} data={graphData} config={customConfig as any} style={{ background: "transparent" }}>
                 {/* Note: StarField is not exported yet. Using dark background. */}
 
                 {images.map((img) => (
@@ -119,7 +119,7 @@ export function FloatingGallery({ onSidebarOpenChange }: FloatingGalleryProps) {
             />
 
             {/* EXIT BUTTON */}
-            
+
         </div>
     );
 }

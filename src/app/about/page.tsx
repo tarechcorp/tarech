@@ -24,13 +24,12 @@ export default function AboutPage() {
                             }}
                         >
                             <span className="w-3 h-3 bg-orange-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            Research Corp
+                            Tarech
                         </Link>
                     </MagneticButton>
                 </div>
                 <div className="col-span-6 md:col-span-9 p-6 flex justify-end gap-8 font-sans text-xs tracking-widest uppercase opacity-60">
                     <span>Nairobi</span>
-                    <span>Lagos</span>
                     <span>Cape Town</span>
                 </div>
             </header>

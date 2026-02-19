@@ -42,10 +42,10 @@ export function MinimalNav({ visible = true }: MinimalNavProps) {
                             <Link
                                 href="/"
                                 onClick={(e) => handleLinkClick(e, "/")}
-                                className="font-display text-3xl font-bold tracking-tight hover:opacity-80 transition-opacity flex items-center gap-2 py-4"
+                                className="font-display text-4xl font-bold tracking-tight hover:opacity-80 transition-opacity flex items-center gap-2 py-4"
                             >
                                 <span className="w-3 h-3 bg-orange-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                Research Corp
+                                Tarech
                             </Link>
                         </MagneticButton>
                     </div>

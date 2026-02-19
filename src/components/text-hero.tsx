@@ -86,11 +86,11 @@ export function TextHero({ opacity, isLoaded }: TextHeroProps) {
                 {/* LEFT: TITLE - MASKED */}
                 <h1 className="font-display font-bold text-[8vw] leading-[0.8] tracking-tight text-white uppercase flex flex-col items-start select-none">
                     <span className="block overflow-hidden pb-2 md:pb-4 -mb-2 md:-mb-4">
-                        <span ref={titleLine1Ref} className="block origin-bottom-left">Workshop</span>
+                        <span ref={titleLine1Ref} className="block origin-bottom-left">Tarech</span>
                     </span>
                     <span className="block overflow-hidden pb-2 md:pb-4 -mb-2 md:-mb-4">
                         <span ref={titleLine2Ref} className="block origin-bottom-left text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60">
-                            Africa
+                            {/* Corp */}
                         </span>
                     </span>
                 </h1>
