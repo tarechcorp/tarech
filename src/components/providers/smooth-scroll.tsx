@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactLenis, useLenis } from "lenis/react";
+import { ReactLenis } from "lenis/react";
 import { ReactNode, useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -9,6 +9,7 @@ interface SmoothScrollProps {
 }
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const lenisRef = useRef<any>(null);
 
     useEffect(() => {

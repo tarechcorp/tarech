@@ -3,17 +3,14 @@
 import { useProgress } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { cn } from "@/lib/utils";
 
 export function LoadingScreen({ onComplete }: { onComplete?: () => void }) {
-    const { active, progress } = useProgress();
+    const { progress } = useProgress();
     const [finished, setFinished] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // When loading is done (active becomes false or progress hits 100 and stays)
-        // We add a small buffer to ensure no flicker
         if (progress === 100) {
             const timer = setTimeout(() => {
                 // Animate out
@@ -43,7 +40,7 @@ export function LoadingScreen({ onComplete }: { onComplete?: () => void }) {
             }, 500); // 500ms hesitation for "weight"
             return () => clearTimeout(timer);
         }
-    }, [progress]);
+    }, [progress, onComplete]);
 
     if (finished) return null;
 

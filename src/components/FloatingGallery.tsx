@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { useRouter } from "next/navigation";
 import * as THREE from "three";
-import { GraphScene, ClusterId, generateGraphData } from "@samoramachel/netuniverse";
+import { GraphScene, generateGraphData } from "@samoramachel/netuniverse";
 import { GalleryItem } from "./GalleryItem";
 import { GlassSidebar } from "@/components/ui/glass-sidebar";
 
@@ -45,8 +44,8 @@ interface FloatingGalleryProps {
 }
 
 export function FloatingGallery({ onSidebarOpenChange }: FloatingGalleryProps) {
-    // const router = useRouter(); // Removed in favor of transition
     const { transitionTo } = usePageTransition();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const graphRef = useRef<any>(null);
     const [images] = useState(() => generateGalleryData(20));
 
@@ -95,6 +94,7 @@ export function FloatingGallery({ onSidebarOpenChange }: FloatingGalleryProps) {
     return (
         <div className="fixed top-0 left-0 w-full h-full -z-10">
             {/* 3D Scene */}
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <GraphScene ref={graphRef} data={graphData} config={customConfig as any} style={{ background: "transparent" }}>
                 {/* Note: StarField is not exported yet. Using dark background. */}
 

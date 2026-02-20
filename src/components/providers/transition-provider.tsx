@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import { createContext, useContext, useState, ReactNode, useCallback, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -23,23 +23,22 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     const router = useRouter();
     const pathname = usePathname();
     const [isTransitioning, setIsTransitioning] = useState(false);
-    const [targetUrl, setTargetUrl] = useState<string | null>(null);
 
     // Reset transition state when pathname changes (navigation complete)
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsTransitioning(false);
     }, [pathname]);
 
-    const transitionTo = (href: string) => {
+    const transitionTo = useCallback((href: string) => {
         if (href === pathname) return;
         setIsTransitioning(true);
-        setTargetUrl(href);
 
         // Wait for shutter to close before pushing route
         setTimeout(() => {
             router.push(href);
         }, 800); // Match animation duration
-    };
+    }, [pathname, router]);
 
     return (
         <TransitionContext.Provider value={{ transitionTo, isTransitioning }}>
