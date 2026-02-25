@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 
 /** @type {import('@nx/next/plugins/with-nx').WithNxOptions} */
 const nextConfig = {
+  output: 'export',
   basePath: '',
   trailingSlash: true,
   images: {
