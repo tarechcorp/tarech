@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Page Not Found - Tarech Studio',
+  title: 'Page Not Found - Tarech',
   description: 'Sorry, we couldn\'t find the page you\'re looking for.',
   robots: {
     index: false,

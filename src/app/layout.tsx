@@ -24,25 +24,25 @@ const syne = Syne({
 export const metadata: Metadata = {
   metadataBase: new URL('http://tarech.org/'),
   title: {
-    default: 'Tarech Studio - Creative Software Consultancy',
-    template: '%s | Tarech Studio'
+    default: 'Tarech - Creative Software Consultancy',
+    template: '%s | Tarech'
   },
   description: 'Creative software consultancy specializing in innovative digital solutions, GSAP animations, and modern web development.',
   keywords: ['software consultancy', 'creative development', 'GSAP', 'web development', 'digital solutions', 'Kenya software company'],
-  authors: [{ name: 'Tarech Studio' }],
-  creator: 'Tarech Studio',
-  publisher: 'Tarech Studio',
+  authors: [{ name: 'Tarech' }],
+  creator: 'Tarech',
+  publisher: 'Tarech',
   openGraph: {
-    title: 'Tarech Studio - Creative Software Consultancy',
+    title: 'Tarech - Creative Software Consultancy',
     description: 'Creative software consultancy specializing in innovative digital solutions.',
     url: 'http://tarech.org/',
-    siteName: 'Tarech Studio',
+    siteName: 'Tarech',
     images: [
       {
         url: 'http://tarech.org//og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Tarech Studio',
+        alt: 'Tarech',
       }
     ],
     locale: 'en_US',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tarech Studio - Creative Software Consultancy',
+    title: 'Tarech - Creative Software Consultancy',
     description: 'Creative software consultancy specializing in innovative digital solutions.',
     images: ['http://tarech.org//twitter-image.jpg'],
     creator: '@tarechstudio',
@@ -93,7 +93,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "@id": "http://tarech.org//#organization",
-              name: "Tarech Studio",
+              name: "Tarech",
               url: "http://tarech.org/",
               logo: "http://tarech.org//logo.png",
               sameAs: [
@@ -113,7 +113,7 @@ export default function RootLayout({
               "@type": "WebSite",
               "@id": "http://tarech.org//#website",
               url: "http://tarech.org/",
-              name: "Tarech Studio",
+              name: "Tarech",
               publisher: {
                 "@id": "http://tarech.org//#organization"
               },
