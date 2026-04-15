@@ -22,7 +22,7 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://tarech.org/'),
+  metadataBase: new URL('https://tarech.org/'),
   title: {
     default: 'Tarech - Creative Software Consultancy',
     template: '%s | Tarech'
@@ -35,11 +35,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Tarech - Creative Software Consultancy',
     description: 'Creative software consultancy specializing in innovative digital solutions.',
-    url: 'http://tarech.org/',
+    url: 'https://tarech.org/',
     siteName: 'Tarech',
     images: [
       {
-        url: 'http://tarech.org//og-image.jpg',
+        url: 'https://tarech.org//og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Tarech',
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Tarech - Creative Software Consultancy',
     description: 'Creative software consultancy specializing in innovative digital solutions.',
-    images: ['http://tarech.org//twitter-image.jpg'],
+    images: ['https://tarech.org//twitter-image.jpg'],
     creator: '@tarechstudio',
   },
   robots: {
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   alternates: {
-    canonical: 'http://tarech.org/',
+    canonical: 'https://tarech.org/',
   },
 };
 
@@ -90,15 +90,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
+              "@context": "httpss://schema.org",
               "@type": "Organization",
-              "@id": "http://tarech.org//#organization",
+              "@id": "https://tarech.org//#organization",
               name: "Tarech",
-              url: "http://tarech.org/",
-              logo: "http://tarech.org//logo.png",
+              url: "https://tarech.org/",
+              logo: "https://tarech.org//logo.png",
               sameAs: [
-                "https://twitter.com/tarechstudio",
-                "https://linkedin.com/company/tarechstudio"
+                "httpss://twitter.com/tarechstudio",
+                "httpss://linkedin.com/company/tarechstudio"
               ]
             })
           }}
@@ -109,19 +109,19 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
+              "@context": "httpss://schema.org",
               "@type": "WebSite",
-              "@id": "http://tarech.org//#website",
-              url: "http://tarech.org/",
+              "@id": "https://tarech.org//#website",
+              url: "https://tarech.org/",
               name: "Tarech",
               publisher: {
-                "@id": "http://tarech.org//#organization"
+                "@id": "https://tarech.org//#organization"
               },
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
                   "@type": "EntryPoint",
-                  urlTemplate: "http://tarech.org//search?q={search_term_string}"
+                  urlTemplate: "https://tarech.org//search?q={search_term_string}"
                 },
                 "query-input": "required name=search_term_string"
               }
