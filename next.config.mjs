@@ -108,8 +108,6 @@ const nextConfig = {
   // Strict mode for better development
   reactStrictMode: true,
 
-  // SwcMinify for better performance
-  swcMinify: true,
 };
 
 export default composePlugins(withNx)(nextConfig);

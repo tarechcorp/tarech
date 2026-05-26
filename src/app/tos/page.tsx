@@ -1,6 +1,13 @@
-// components/legal/TermsOfService.jsx
+import { Metadata } from 'next';
 import React from 'react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service | Tarech',
+  description: "Read the terms and conditions governing the use of Tarech's website, research, and services.",
+  robots: { index: true, follow: true },
+  alternates: { canonical: 'https://tarech.org/tos' },
+};
 
 const TermsOfService = () => {
   return (

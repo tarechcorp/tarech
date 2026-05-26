@@ -1,13 +1,13 @@
 {
   "name": "tarech",
  "$schema": "../../node_modules/nx/schemas/project-schema.json",
- "sourceRoot": "apps/templates/tarech",
+ "sourceRoot": "apps/tarech",
  "projectType": "application",
    "targets": {
      "build": {
        "executor": "@nx/next:build",
        "options": {
-         "root": "apps/templates/tarech",
+         "root": "apps/tarech",
          "outputPath": "dist/apps/tarech",
          "baseHref": "/tarech"
        }

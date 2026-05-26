@@ -27,19 +27,19 @@ export const metadata: Metadata = {
     default: 'Tarech - Creative Software Consultancy',
     template: '%s | Tarech'
   },
-  description: 'Creative software consultancy specializing in innovative digital solutions, GSAP animations, and modern web development.',
+  description: 'Creative software consultancy building practical digital solutions for Africa, with modern web development and GSAP animations.',
   keywords: ['software consultancy', 'creative development', 'GSAP', 'web development', 'digital solutions', 'Kenya software company'],
   authors: [{ name: 'Tarech' }],
   creator: 'Tarech',
   publisher: 'Tarech',
   openGraph: {
     title: 'Tarech - Creative Software Consultancy',
-    description: 'Creative software consultancy specializing in innovative digital solutions.',
+    description: 'Creative software consultancy building practical digital solutions for Africa.',
     url: 'https://tarech.org/',
     siteName: 'Tarech',
     images: [
       {
-        url: 'https://tarech.org//og-image.jpg',
+        url: 'https://tarech.org/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Tarech',
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Tarech - Creative Software Consultancy',
-    description: 'Creative software consultancy specializing in innovative digital solutions.',
-    images: ['https://tarech.org//twitter-image.jpg'],
+    description: 'Creative software consultancy building practical digital solutions for Africa.',
+    images: ['https://tarech.org/twitter-image.jpg'],
     creator: '@tarechstudio',
   },
   robots: {
@@ -90,15 +90,15 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "httpss://schema.org",
+              "@context": "https://schema.org",
               "@type": "Organization",
-              "@id": "https://tarech.org//#organization",
+              "@id": "https://tarech.org/#organization",
               name: "Tarech",
               url: "https://tarech.org/",
-              logo: "https://tarech.org//logo.png",
+              logo: "https://tarech.org/logo.png",
               sameAs: [
-                "httpss://twitter.com/tarechstudio",
-                "httpss://linkedin.com/company/tarechstudio"
+                "https://twitter.com/tarechstudio",
+                "https://linkedin.com/company/tarechstudio"
               ]
             })
           }}
@@ -109,19 +109,19 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "httpss://schema.org",
+              "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": "https://tarech.org//#website",
+              "@id": "https://tarech.org/#website",
               url: "https://tarech.org/",
               name: "Tarech",
               publisher: {
-                "@id": "https://tarech.org//#organization"
+                "@id": "https://tarech.org/#organization"
               },
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
                   "@type": "EntryPoint",
-                  urlTemplate: "https://tarech.org//search?q={search_term_string}"
+                  urlTemplate: "https://tarech.org/search?q={search_term_string}"
                 },
                 "query-input": "required name=search_term_string"
               }

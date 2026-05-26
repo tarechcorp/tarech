@@ -1,7 +1,29 @@
-// app/page.tsx (or pages/index.tsx depending on your setup)
+import { Metadata } from 'next';
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Brain, Shield, Users, Code, Globe, Database } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Tarech Home | AI Research for Africa',
+  description: "Explore Tarech's AI research in African languages, agricultural AI, healthcare AI, and financial inclusion.",
+  openGraph: {
+    title: 'Tarech Home | AI Research for Africa',
+    description: "Explore Tarech's AI research in African languages, agricultural AI, healthcare AI, and financial inclusion.",
+    url: 'https://tarech.org/homepage',
+    siteName: 'Tarech',
+    images: [{ url: 'https://tarech.org/og-image.jpg', width: 1200, height: 630, alt: 'Tarech Research' }],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tarech Home | AI Research for Africa',
+    description: "Explore Tarech's AI research in African languages, agricultural AI, healthcare AI, and financial inclusion.",
+    images: ['https://tarech.org/twitter-image.jpg'],
+  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: 'https://tarech.org/homepage' },
+};
 
 const HomePage = () => {
   return (
@@ -32,7 +54,7 @@ const HomePage = () => {
             Advancing African AI Research
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Tarech is an African AI research company dedicated to developing cutting-edge artificial intelligence technologies that address unique challenges and opportunities across the continent.
+            Tarech is an African AI research company dedicated to developing artificial intelligence technologies that address unique challenges and opportunities across the continent.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link 
@@ -145,7 +167,7 @@ const HomePage = () => {
                 </a>
               </p>
               <p className="text-blue-100 mb-8">
-                Our business division provides enterprise-grade AI tools and software solutions for organizations across Africa, 
+                Our business division provides practical AI tools and software solutions for organizations across Africa, 
                 powered by the latest advances from our research team.
               </p>
               <Link 
@@ -186,7 +208,7 @@ const HomePage = () => {
               <h2 className="text-3xl font-bold text-gray-900 mb-6">About Tarech</h2>
               <p className="text-lg text-gray-600 mb-4">
                 Founded in 2020, Tarech is a pan-African AI research organization with teams in Kenya, Nigeria, South Africa, and Rwanda. 
-                Our mission is to ensure that African voices, needs, and contexts are represented in the global AI revolution.
+                Our mission is to ensure that African voices, needs, and contexts are represented in the global AI landscape.
               </p>
               <p className="text-lg text-gray-600 mb-6">
                 We bring together researchers, engineers, and domain experts to solve pressing challenges using responsible AI.

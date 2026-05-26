@@ -1,6 +1,13 @@
-// components/legal/PrivacyPolicy.jsx
+import { Metadata } from 'next';
 import React from 'react';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Tarech',
+  description: 'Learn how Tarech collects, uses, and protects your personal data.',
+  robots: { index: true, follow: true },
+  alternates: { canonical: 'https://tarech.org/privacy-policy' },
+};
 
 const PrivacyPolicy = () => {
   return (

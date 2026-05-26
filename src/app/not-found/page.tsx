@@ -8,6 +8,21 @@ export const metadata: Metadata = {
     index: false,
     follow: true,
   },
+  openGraph: {
+    title: 'Page Not Found - Tarech',
+    description: 'Sorry, we couldn\'t find the page you\'re looking for.',
+    url: 'https://tarech.org/not-found',
+    siteName: 'Tarech',
+    images: [{ url: 'https://tarech.org/og-image.jpg', width: 1200, height: 630, alt: 'Tarech' }],
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Page Not Found - Tarech',
+    description: 'Sorry, we couldn\'t find the page you\'re looking for.',
+    images: ['https://tarech.org/twitter-image.jpg'],
+  },
+  alternates: { canonical: 'https://tarech.org/not-found' },
 };
 
 export default function NotFound() {
