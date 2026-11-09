@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="assets/tarech-logo.png">
+<title>Tarech AI — Applied AI Services for African Corporates</title>
+<meta name="description" content="Applied AI for African corporates: WhatsApp AI agents, meeting intelligence, document automation, credit scoring, fraud detection and forecasting — delivered through a managed production pipeline, not a chatbot demo. Nairobi, Kenya.">
+<meta property="og:title" content="Tarech AI — Applied AI for African Corporates">
+<meta property="og:description" content="Beyond the chatbot: AI readiness, pilot to production, and a managed AI service with the governance layer competitors omit.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ai.tarech.org">
+<meta property="og:site_name" content="Tarech AI">
+<meta property="og:locale" content="en_KE">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#FFFFFF; --bg-soft:#F5F8F6; --bg-deep:#01301F;
+    --ink:#10120F; --ink-soft:#4E554F; --ink-mute:#787F79;
+    --green:#006C49; --green-deep:#01301F; --green-bright:#0A8A5F; --green-mist:#E7F1EC; --green-line:#CBE3D9;
+    --line:#E4E7E3; --line-soft:#EFF1EF;
+    --serif:'Space Grotesk',Helvetica,Arial,sans-serif;
+    --sans:'IBM Plex Sans',-apple-system,Segoe UI,Roboto,sans-serif;
+    --radius:16px;
+    --shadow:0 1px 2px rgba(16,18,15,.05),0 14px 34px -24px rgba(16,18,15,.4);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.brand,.lever{font-family:var(--serif)}
+  a{color:var(--green);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{width:min(1120px,92vw);margin:0 auto}
+  .kicker{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green);background:var(--green-mist);padding:5px 11px;border-radius:999px;margin:0 0 14px}
+
+  header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line-soft)}
+  .bar{display:flex;align-items:center;gap:24px;height:66px}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;font-size:19px;color:var(--ink)}
+  .brand img{width:30px;height:30px;border-radius:8px}
+  .brand span{color:var(--green)}
+  nav.top{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+  nav.top a{font-size:14px;font-weight:600;color:var(--ink-soft);padding:7px 12px;border-radius:999px}
+  nav.top a:hover{background:var(--green-mist);color:var(--green);text-decoration:none}
+  nav.top a.cta{background:var(--green);color:#fff}
+  nav.top a.cta:hover{background:var(--green-deep)}
+
+  .hero{padding:80px 0 64px;border-bottom:1px solid var(--line-soft);background:linear-gradient(180deg,#F5F8F6 0%,#fff 90%)}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .hero h1{font-size:clamp(34px,5.2vw,56px);line-height:1.06;letter-spacing:-.03em;font-weight:700;margin:0 0 18px}
+  .hero h1 em{font-style:normal;color:var(--green)}
+  .lede{font-size:clamp(17px,2vw,19px);color:var(--ink-soft);max-width:64ch;margin:0 0 30px}
+  .btn-primary,.btn-ghost{display:inline-block;font-size:15px;font-weight:600;padding:13px 24px;border-radius:10px;border:1px solid transparent;transition:background .2s,transform .2s;border-color:var(--line)}
+  .btn-primary{background:var(--green);color:#fff;border-color:transparent}
+  .btn-primary:hover{background:var(--green-deep);transform:translateY(-2px);text-decoration:none}
+  .btn-ghost{background:#fff;color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px);text-decoration:none}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+  .facts{display:flex;flex-wrap:wrap;gap:12px}
+  .fact{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;min-width:170px;box-shadow:var(--shadow)}
+  .fact b{display:block;font-family:var(--serif);font-size:26px;letter-spacing:-.02em;color:var(--green)}
+  .fact span{font-size:13px;color:var(--ink-mute);font-weight:500;line-height:1.4}
+  .gate{background:#fff;border:1px solid var(--green-line);border-radius:var(--radius);padding:22px 26px;box-shadow:var(--shadow)}
+  .gate p{margin:0;font-size:15px;color:var(--ink-soft)}
+  .gate b{color:var(--green)}
+  .gate .src{display:block;margin-top:10px;font-size:12px;color:var(--ink-mute)}
+
+  section{padding:70px 0;border-bottom:1px solid var(--line-soft)}
+  section.alt{background:var(--bg-soft)}
+  .sec-head h2{font-size:clamp(26px,3.4vw,38px);letter-spacing:-.025em;font-weight:700;margin:0 0 8px}
+  .sec-head p{margin:0;color:var(--ink-soft);max-width:70ch}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+  .lever{background:#fff;border:1px solid var(--line);border-top:3px solid var(--green);border-radius:14px;padding:20px 20px 18px;box-shadow:var(--shadow);position:relative}
+  .lever .num{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--green);letter-spacing:.08em}
+  .lever h3{margin:6px 0 4px;font-size:18px;letter-spacing:-.01em}
+  .lever .term{font-size:12.5px;font-weight:600;color:var(--ink-mute);margin-bottom:8px}
+  .lever p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+
+  .serv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:30px}
+  .serv{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .serv::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--green)}
+  .serv h3{margin:0 0 6px;font-size:19px;letter-spacing:-.015em;font-weight:700}
+  .serv p{margin:0 0 12px;color:var(--ink-soft);font-size:15.5px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-size:12px;font-weight:600;color:var(--green);background:var(--green-mist);padding:4px 10px;border-radius:999px}
+  .tier{position:absolute;right:14px;top:14px;font-size:11.5px;font-weight:700;color:var(--ink-mute);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+
+  .moat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:30px}
+  .pill{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .pill h4{margin:0 0 4px;font-size:15.5px;letter-spacing:-.01em}
+  .pill p{margin:0;font-size:14px;color:var(--ink-mute)}
+
+  .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:30px}
+  .work{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .work.display{grid-column:span 2}
+  .mock{background:#F5F8F6;border-bottom:1px solid var(--line-soft);padding:26px 28px;min-height:190px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+  .work .body{padding:20px 24px 22px;flex:1;display:flex;flex-direction:column}
+  .work h3{margin:0 0 6px;font-size:19px;letter-spacing:-.015em;font-weight:700}
+  .work p{margin:0 0 12px;color:var(--ink-soft);font-size:15px}
+  .work .status{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green)}
+  .mock .bub{max-width:78%;border-radius:14px;padding:10px 14px;font-size:13.5px;line-height:1.5}
+  .mock .in{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}
+  .mock .out{background:var(--green);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+  .mock .chipset{display:flex;gap:8px;flex-wrap:wrap}
+  .mock .chip{font-size:12px;font-weight:600;border:1px solid var(--green-line);color:var(--green);background:#fff;border-radius:999px;padding:3px 10px}
+  .mock .ask{display:flex;gap:10px;align-items:flex-start}
+  .mock .q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:13.5px;box-shadow:var(--shadow);flex:1}
+  .mock .ans{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:13.5px;box-shadow:var(--shadow)}
+  .mock .cite{display:inline-block;background:var(--green-mist);color:var(--green);font-size:11px;font-weight:700;border-radius:5px;padding:0 5px;margin-left:3px}
+  .mock .opt{display:flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-size:13px}
+  .mock .opt.right{border-color:var(--green);background:var(--green-mist);font-weight:600}
+  .mock .tick{width:16px;height:16px;flex:0 0 16px;border-radius:50%;background:var(--green);position:relative}
+  .mock .tick::after{content:"";position:absolute;left:4px;top:4px;width:8px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(40deg)}
+  .mock .ts{margin-left:auto;font-size:11px;color:var(--ink-mute);flex:0 0 auto}
+  .mock .row{background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px 12px;font-size:13px;display:flex;gap:10px;align-items:center}
+  .mock .keyhi{background:var(--green-mist);border:1px dashed var(--green-line);color:var(--green-deep);font-weight:600}
+  .mock .stat{flex:1;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-align:center}
+  .mock .stat b{display:block;font-family:var(--serif);font-size:20px;color:var(--green)}
+  .mock .stat span{font-size:11.5px;color:var(--ink-mute)}
+  .mock .sess{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+  .gov{background:var(--bg-deep);color:#E9F2EE}
+  .gov h2{color:#fff}
+  .gov .sec-head p{color:#B9D4C8}
+  .gov-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:28px}
+  .gov-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px 18px}
+  .gov-item h4{margin:0 0 4px;font-size:15.5px;color:#fff;letter-spacing:-.01em}
+  .gov-item p{margin:0;font-size:14px;color:#A9C9BB}
+  .gov .src{color:#7FA393}
+
+  .form-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);max-width:780px;margin:30px auto 0}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin:0 0 5px}
+  input,select,textarea{width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#fff;margin-bottom:14px;transition:border-color .15s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--green)}
+  textarea{min-height:96px;resize:vertical}
+  .check{display:flex;gap:40px;flex-wrap:wrap;font-size:14px;color:var(--ink-soft);margin:4px 0 16px}
+  .check label{font-weight:500;margin:0;display:flex;align-items:flex-start;gap:8px}
+  .check input{width:auto;margin:0}
+  .form-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .form-note{font-size:13px;color:var(--ink-mute);margin:14px 0 0}
+  .panel{max-width:780px;margin:14px auto 0;background:var(--green-mist);border:1px solid var(--green-line);border-radius:12px;padding:18px 22px;font-size:15px}
+  .panel a.btn-primary{margin-top:6px}
+
+  footer.site{padding:60px 0 72px;background:var(--bg-deep);color:#A9C9BB}
+  footer.site h2{color:#fff;font-family:var(--serif);font-size:28px;letter-spacing:-.02em;margin:0 0 10px}
+  footer.site p{margin:0 0 8px;max-width:70ch}
+  footer.site a{color:#5FC79E;font-weight:500}
+  .foot-row{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:18px;font-size:14.5px}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:560px){
+    .steps{grid-template-columns:1fr}
+    .form-grid{grid-template-columns:1fr}
+    .form-card{padding:22px}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#top" id="top"><img src="assets/tarech-logo.png" alt="">Tarech<span> AI</span></a>
+      <nav class="top">
+      <a href="#work">AI work</a>
+      <a href="#services">Services</a>
+      <a href="#ladder">How we work</a>
+      <a href="#request" class="cta">Request a service</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">Tarech — Applied AI · Nairobi, Kenya</p>
+      <h1>Applied AI for African corporates. <em>Beyond the chatbot.</em></h1>
+      <p class="lede">Most organisations here can run an AI pilot. Almost none can carry it into a live, monitored, compliant system. That gap — not model choice — is where clean AI work is won. We audit, build, and then carry the service in production.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#request">Request a service</a>
+        <a class="btn-ghost" href="#services">See what we build</a>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>82%</b><span>of African organisations run AI pilots — few scale</span></div>
+        <div class="fact"><b>2% → 5%</b><span>average AI spend vs global leaders, as share of revenue</span></div>
+        <div class="fact"><b>$1.4T</b><span>annual mobile-money value in Sub-Saharan Africa</span></div>
+        <div class="fact"><b>50–200h</b><span>of speech data per language is enough to build viable systems</span></div>
+      </div>
+    </div>
+    <div class="gate">
+      <h3 style="margin:0 0 8px;font-size:18px">Why pilots stall here</h3>
+      <p>African AI budgets are spent on experimentation, not production. The data is unlabelled, no one owns drift or evaluation, and compliance — the Data Protection Act 2019 and Kenya's National AI Strategy — is becoming a procurement gate rather than a courtesy.</p>
+      <span class="src">Sources: PwC Africa AI study (1,217 executives, 2026) · Kenya National AI Strategy 2025–2030</span>
+    </div>
+  </div>
+</section>
+
+<section id="ladder" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Engagement ladder</p>
+      <h2>How an engagement runs</h2>
+      <p>Four stages. You can enter at any one of them, but most start with the assessment — it is fixed-fee, and it decides what is actually worth building before any money goes into software.</p>
+    </div>
+    <div class="steps">
+      <div class="lever"><span class="num">01 — ENTRY</span><h3>AI Readiness Assessment</h3><span class="term">2–3 weeks · fixed fee</span><p>Data audit, process map, prioritised use cases with an ROI model, and a compliance gap analysis against the Data Protection Act 2019.</p></div>
+      <div class="lever"><span class="num">02 — BUILD</span><h3>Pilot → Production</h3><span class="term">6–10 weeks · fixed fee</span><p>One workflow carried to live operation with evaluation baselines and a documented handover — not a demo, a system.</p></div>
+      <div class="lever"><span class="num">03 — RUN</span><h3>Managed AI Service</h3><span class="term">Monthly subscription</span><p>Hosting, monitoring, drift detection, retraining and compliance maintenance, with human review where decisions carry risk.</p></div>
+      <div class="lever"><span class="num">04 — RESEARCH</span><h3>Applied AI Partnership</h3><span class="term">Project or grant</span><p>Joint work with university, DFI or corporate partners in language, agriculture, finance and health verticals — with publication and dataset outputs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Selected AI work</p>
+      <h2>AI systems we build and run ourselves</h2>
+      <p>Everything here is in-house and operating — not concepts. The same pipeline underneath these systems is what we commercialise for corporates, which is why our proposals carry working demos rather than slides.</p>
+    </div>
+    <div class="work-grid">
+      <div class="work">
+        <div class="mock">
+          <div class="ask"><div class="q">Which customer invoices are still open past 30 days?</div></div>
+          <div class="ans">Seven invoices totalling KES 482,000, oldest 63 days.<span class="cite">2</span><span class="cite">5</span><div class="chipset" style="margin-top:8px"><span class="chip">invoices-2025.csv</span><span class="chip">wiki/credit-terms</span><span class="chip">chat-log/mon</span></div></div>
+        </div>
+        <div class="body">
+          <span class="status">In production · API</span>
+          <h3>Company RAG platform</h3>
+          <p>Multi-tenant search-and-ask API over a company's own knowledge: documents, sites, Notion, Drive and chat logs. Hybrid vector + keyword retrieval, cited answers, evaluation baselines — the knowledge base a client's staff actually ask.</p>
+          <div class="tags" style="margin-top:auto"><span class="tag">FastAPI</span><span class="tag">pgvector</span><span class="tag">Citations</span><span class="tag">Multi-tenant</span></div>
+        </div>
+      </div>
+      <div class="work">
+        <div class="mock">
+          <div class="bub in">Do you have vintage Levi's in size 36?</div>
+          <div class="bub out">Yes — 3 dad jeans (36W) in stock, from KES 1,800. Want photos of each? 📸</div>
+          <div class="bub in">Send the dark pair</div>
+          <div class="bub out">Sent. Tap to pay via M-Pesa and it ships today via boda.</div>
+        </div>
+        <div class="body">
+          <span class="status">In production · WhatsApp</span>
+          <h3>Thrift WhatsApp assistant</h3>
+          <p>A WhatsApp agent that answers stock questions, shows items and takes payments for a second-hand clothes business — live on the channel its customers already use, with a human handoff when confidence drops.</p>
+          <div class="tags" style="margin-top:auto"><span class="tag">WhatsApp API</span><span class="tag">M-Pesa</span><span class="tag">Tier-1 service</span></div>
+        </div>
+      </div>
+      <div class="work">
+        <div class="mock">
+          <div class="opt right"><span class="tick"></span>Retrieval fuses vector and keyword results<span class="ts">12:04</span></div>
+          <div class="opt">It answers from the public internet<span class="ts">re-watch</span></div>
+        </div>
+        <div class="body">
+          <span class="status">Live · Product</span>
+          <h3>Transcript-to-quiz engine</h3>
+          <p>Paste a teaching video, get a multiple-choice quiz from the actual transcript — with a re-watch link to the exact moment each answer turns on. Built as a study tool; running as a generator.</p>
+          <div class="tags" style="margin-top:auto"><span class="tag">Transcripts</span><span class="tag">MCQ generation</span><span class="tag">Timestamped</span></div>
+        </div>
+      </div>
+      <div class="work">
+        <div class="mock">
+          <div class="sess">
+            <div class="row">Mean Sharpe <b style="font-family:var(--serif);color:var(--green)">v4</b></div>
+            <div class="row">Purged walk-forward <b style="font-family:var(--serif);color:var(--green)">✓</b></div>
+          </div>
+          <div class="sess">
+            <div class="row keyhi">Look-ahead bias: removed</div>
+            <div class="row">Leakage forensics: pass</div>
+          </div>
+        </div>
+        <div class="body">
+          <span class="status">Research · Finance</span>
+          <h3>Quant alpha model</h3>
+          <p>A cross-sectional equity model with the boring parts done properly: leakage forensics, purged walk-forward validation, deflated Sharpe accounting. It is our evidence for what honest evaluation looks like.</p>
+          <div class="tags" style="margin-top:auto"><span class="tag">Walk-forward</span><span class="tag">Deflated Sharpe</span><span class="tag">No look-ahead</span></div>
+        </div>
+      </div>
+      <div class="work">
+        <div class="mock">
+          <div class="ask"><div class="q">Aheri <span class="cite">____</span> e chula.</div></div>
+          <div class="chipset">
+            <span class="chip">rice</span>
+            <span class="chip">Monday</span>
+            <span class="chip">sweet tea</span>
+          </div>
+          <div class="row"><b style="font-family:var(--serif);color:var(--green)">4–6M</b>&nbsp;speakers · lyric-corpus built from gospel, ohangla &amp; benga · Openly-licensed text</div>
+        </div>
+        <div class="body">
+          <span class="status">Research · Language</span>
+          <h3>Dholuo language bank</h3>
+          <p>Vocabulary, cloze drills and a corpus study built from Luo song lyrics and scripture — the start of the low-resource language programme: African languages need targeted data, not bigger models.</p>
+          <div class="tags" style="margin-top:auto"><span class="tag">Corpus</span><span class="tag">Cloze drills</span><span class="tag">Tier-3 moat</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="moat" style="margin-top:20px">
+      <div class="pill"><h4>AI &amp; ML curriculum</h4><p>A 125-chapter, 15-track training programme delivered to client teams alongside every build — the staff-training service line.</p></div>
+      <div class="pill"><h4>myBusiness data layer</h4><p>Thousands of SME systems on M-Pesa rails generate the transaction data that powers forecasting and credit-scoring demos on real numbers.</p></div>
+      <div class="pill"><h4>Full portfolio</h4><p>All production systems — platforms, logistics, NGO and travel work — are on <a href="https://tarech.org" target="_blank" rel="noopener">tarech.org →</a></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">What we build</p>
+      <h2>Requestable services</h2>
+      <p>Each one below can be requested directly. Tier-1 buys fast; Tier-2 is where the durable value sits — and where our install base gives us data nobody else can see.</p>
+    </div>
+    <div class="serv-grid">
+      <div class="serv"><span class="tier">Tier 1</span><h3>WhatsApp AI agents</h3><p>AI assistants on the channel your customers already use, wired to your systems and payments — with escalation to a human when confidence is low.</p><div class="tags"><span class="tag">Kiswahili-aware</span><span class="tag">M-Pesa flows</span></div></div>
+      <div class="serv"><span class="tier">Tier 1</span><h3>Meeting intelligence</h3><p>Transcription, summaries and auto-drafted minutes for Kiswahili–English code-switched meetings — where generic models degrade and we are deliberately better.</p><div class="tags"><span class="tag">Code-switching</span><span class="tag">Minutes</span></div></div>
+      <div class="serv"><span class="tier">Tier 1</span><h3>Document automation</h3><p>OCR and structured extraction from invoices, receipts and contracts, with generation of eTIMS/KRA-compliant invoices.</p><div class="tags"><span class="tag">KRA eTIMS</span><span class="tag">Extraction</span></div></div>
+      <div class="serv"><span class="tier">Tier 2</span><h3>Alternative-data credit scoring</h3><p>Scorecards for SACCOs, MFIs and banks lending to SMEs on intuition — built on transaction histories they currently cannot see. Tala-style, Kenyan-made.</p><div class="tags"><span class="tag">SACCO</span><span class="tag">MFI</span></div></div>
+      <div class="serv"><span class="tier">Tier 2</span><h3>Fraud &amp; anomaly detection</h3><p>Agent fraud, payroll fraud, inventory shrinkage and transaction round-tripping — pattern problems where rules fail and models succeed.</p><div class="tags"><span class="tag">Detection</span><span class="tag">Alerts</span></div></div>
+      <div class="serv"><span class="tier">Tier 2</span><h3>Forecasting</h3><p>Demand, stock, sales and cashflow forecasting — including live demonstration on real myBusiness trading data inside one month.</p><div class="tags"><span class="tag">Demand</span><span class="tag">Cashflow</span></div></div>
+      <div class="serv"><span class="tier">Tier 2</span><h3>Computer vision</h3><p>National ID and KRA PIN verification, receipt scanning, product photo auto-listing, crop disease detection from phone cameras.</p><div class="tags"><span class="tag">OCR</span><span class="tag">Verification</span></div></div>
+      <div class="serv"><span class="tier">Tier 3</span><h3>Language research partnership</h3><p>Kiswahili and Sheng NLP, code-switched speech recognition and low-resource language systems — owned datasets that compound and cannot be bought off a shelf.</p><div class="tags"><span class="tag">ASR</span><span class="tag">NLP</span><span class="tag">Datasets</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="governance" class="gov">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker" style="background:rgba(95,199,158,.14);color:#5FC79E">The layer competitors omit</p>
+      <h2>Governance is part of the build</h2>
+      <p>Every engagement ships with these by default. Enterprises pay a premium for auditable AI — and Kenya's AI Strategy is now writing that requirement into procurement.</p>
+    </div>
+    <div class="gov-list">
+      <div class="gov-item"><h4>Evaluation &amp; baselines</h4><p>Every model has documented evaluation suites, agreed before the pilot goes live</p></div>
+      <div class="gov-item"><h4>Drift monitoring</h4><p>Registry, drift detection and retraining schedules — the model you approved is the model in production</p></div>
+      <div class="gov-item"><h4>Human-in-the-loop</h4><p>Review points wherever a decision carries cost, with confidence thresholds we set together</p></div>
+      <div class="gov-item"><h4>PII redaction</h4><p>Personal data stripped at ingestion, not in a policy document — in code</p></div>
+      <div class="gov-item"><h4>Honest reporting</h4><p>Negative results are reported as results. A pilot quietly abandoned is still a finding</p></div>
+      <div class="gov-item"><h4>Compliance, documented</h4><p>Data Protection Act 2019 and Kenya AI Strategy 2025–2030 alignment, ready to hand to a procurement officer</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="request">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Start it</p>
+      <h2>Request a service</h2>
+      <p>Tell us the service and where it hurts. We reply within one working day with either a scope sheet or honest advice not to spend the money.</p>
+    </div>
+    <form id="req" class="form-card">
+      <div class="form-grid">
+        <div><label for="company">Company</label><input id="company" required placeholder="Company Ltd"></div>
+        <div><label for="name">Contact name</label><input id="name" required placeholder="Your name"></div>
+        <div><label for="email">Work email</label><input id="email" type="email" required placeholder="name@company.co.ke"></div>
+        <div><label for="phone">Phone / WhatsApp</label><input id="phone" type="tel" placeholder="+254 7xx xxx xxx"></div>
+      </div>
+      <label for="service">Service requested</label>
+      <select id="service">
+        <option>AI Readiness Assessment</option>
+        <option>Pilot → Production build</option>
+        <option>Managed AI Service</option>
+        <option>Applied AI Partnership (research)</option>
+        <option>WhatsApp AI agent</option>
+        <option>Meeting intelligence</option>
+        <option>Document automation (KRA eTIMS)</option>
+        <option>Alternative-data credit scoring</option>
+        <option>Fraud &amp; anomaly detection</option>
+        <option>Forecasting (demand / stock / cashflow)</option>
+        <option>Computer vision</option>
+        <option>Something else</option>
+      </select>
+      <label>Where should the first conversation happen?</label>
+      <div class="check">
+        <label><input type="checkbox" id="via-wa" checked> WhatsApp</label>
+        <label><input type="checkbox" id="via-email" checked> Email</label>
+      </div>
+      <label for="need">What should it do?</label>
+      <textarea id="need" placeholder="Describe the workflow, the data you already have, and what a good result looks like."></textarea>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" id="go-wa">Send via WhatsApp</button>
+        <button type="submit" class="btn-ghost" id="go-email">Send via Email</button>
+      </div>
+      <p class="form-note">Submission opens WhatsApp (wa.me/254727243892) or your mail client (hello@tarech.org) with the request pre-filled. Nothing is stored on this page. By sending you agree we may reply and — only if useful — draft a Data Protection Act 2019-consistent handling note for your data.</p>
+    </form>
+    <div class="panel" id="panel">
+      <b>Request generated.</b> One more step — pick the channel and it routes:
+      <p style="margin:10px 0 4px"><a class="btn-primary" id="p-wa" target="_blank" rel="noopener">Open WhatsApp →</a> <a class="btn-ghost" id="p-mail" style="margin-left:8px">Open email client →</a></p>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <h2>Applied AI, run in production, from Nairobi.</h2>
+    <p>Tarech is a technology research centre. We build AI that ends up owned, monitored and understood by the organisation that bought it — and we say no when the honest answer is that it will not earn its keep.</p>
+    <div class="foot-row">
+      <span>Web: <a href="https://tarech.org" target="_blank" rel="noopener">tarech.org</a></span>
+      <span>Email: <a href="mailto:hello@tarech.org">hello@tarech.org</a></span>
+      <span>WhatsApp: <a href="https://wa.me/254727243892" target="_blank" rel="noopener">+254 727 243 892</a></span>
+      <span>GitHub: <a href="https://github.com/tarechcorp" target="_blank" rel="noopener">github.com/tarechcorp</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const PHONE="254727243892";
+const EMAIL="hello@tarech.org";
+const form=document.getElementById("req");
+const panel=document.getElementById("panel");
+panel.style.display="none";
+function message(){
+  const v=id=>document.getElementById(id).value.trim();
+  const chan=[];
+  if(document.getElementById("via-wa").checked)chan.push("WhatsApp");
+  if(document.getElementById("via-email").checked)chan.push("Email");
+  return "Service request from ai.tarech.org\n\nCompany: "+v("company")+"\nName: "+v("name")+"\nEmail: "+v("email")+"\nPhone: "+(v("phone")||"—")+"\nService: "+document.getElementById("service").value+"\nReach by: "+(chan.join(" + ")||"Email")+"\n\nWhat it should do:\n"+(v("need")||"—");
+}
+function waHref(){return "https://wa.me/"+PHONE+"?text="+encodeURIComponent(message());}
+function mailHref(){return "mailto:"+EMAIL+"?subject="+encodeURIComponent("AI service request — "+document.getElementById("company").value.trim())+"&body="+encodeURIComponent(message());}
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  const btn=e.submitter||document.getElementById("go-wa");
+  const isMail=btn.id==="go-email";
+  if(btn.id==="go-email"&&!document.getElementById("via-email").checked){document.getElementById("via-email").checked=true;}
+  if(isMail){window.location.href=mailHref();}
+  else{window.open(waHref(),"_blank");}
+  panel.style.display="block";
+  document.getElementById("p-wa").href=waHref();
+  document.getElementById("p-mail").href=mailHref();
+  panel.scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+</script>
+</body>
+</html>
